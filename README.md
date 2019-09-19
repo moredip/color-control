@@ -6,8 +6,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 
 ## TODO
-- [ ] add color swatch
+- [x] add color swatch
 - [ ] add write to io.adafruit
-- [ ] set up hosting infra
-- [ ] set up CD pipeline
+- [x] set up hosting infra
+- [x] set up CD pipeline
 - [ ] add HSV support

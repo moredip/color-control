@@ -38,13 +38,17 @@ const Slider = styled(RangeInput)`
   background-color: ${props => props.displayColor};
 `;
 
-export default function ColorSlider({label,value,displayColor}){
-  const percentageValue = 100*value;
-  const formattedValue=`${Math.round(percentageValue)}%`;
+export default function ColorSlider({label,value,displayColor,onChange}){
+  const formattedValue=`${Math.round(value/2.55)}%`;
+
+  const handleChange = (event)=> {
+    onChange(event.target.value);
+  }
+
   return (
     <div>
       <span>{label}</span> 
-      <Slider displayColor={displayColor} value={percentageValue} type="range" min="0" max="100"/>
+      <Slider displayColor={displayColor} value={value} onChange={handleChange} type="range" min="0" max="255"/>
       <Number displayColor={displayColor}>{formattedValue}</Number>
     </div>
   );

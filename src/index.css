@@ -39,10 +39,6 @@ hr {
   /*margin-top: -1ex;*/
 }
 
-.red.slider input { background-color: #ef2929; }
-.green.slider input { background-color: #8ae234; }
-.blue.slider input { background-color: #729fcf; }
-
 #swatch {
   width: 100%;
   text-align: center;

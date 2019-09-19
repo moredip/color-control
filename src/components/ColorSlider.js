@@ -39,11 +39,13 @@ const Slider = styled(RangeInput)`
 `;
 
 export default function ColorSlider({label,value,displayColor}){
+  const percentageValue = 100*value;
+  const formattedValue=`${Math.round(percentageValue)}%`;
   return (
     <div>
-      <span class="label">{label}</span> 
-      <Slider displayColor={displayColor} value={value} type="range" min="0" max="255"/>
-      <Number displayColor={displayColor}>{value}</Number>
+      <span>{label}</span> 
+      <Slider displayColor={displayColor} value={percentageValue} type="range" min="0" max="100"/>
+      <Number displayColor={displayColor}>{formattedValue}</Number>
     </div>
   );
 }

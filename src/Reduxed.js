@@ -1,13 +1,15 @@
 import React from 'react'
+import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux'
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
 
 import rootReducer from './ducks/rootReducer';
 
-const store = createStore(
-  rootReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancers = composeEnhancers(
+    applyMiddleware(thunk)
 );
+const store = createStore(rootReducer,enhancers);
 
 export default function Reduxed({children}){
   return (

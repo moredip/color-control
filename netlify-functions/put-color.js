@@ -3,7 +3,7 @@ exports.handler = async event => {
 
     if( event.httpMethod !== 'PUT' ){
         return {
-            status: 405
+            statusCode: 405
         };
     }
 
@@ -13,7 +13,7 @@ exports.handler = async event => {
     return {
         statusCode: 200,
         body: JSON.stringify({
-            color: 'rebeccapurple'
+            color
         })
     };
 }

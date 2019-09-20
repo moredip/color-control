@@ -4,8 +4,6 @@ const IO_API_KEY = process.env.IO_API_KEY;
 const IO_USERNAME = process.env.IO_USERNAME;
 const IO_FEED_NAME = process.env.IO_FEED_NAME;
 
-const feedBatchUrl = `https://io.adafruit.com/api/v2/${IO_USERNAME}/feeds/${IO_FEED_NAME}/data/batch`;
-
 const ioClient = axios.create({
     baseURL: `https://io.adafruit.com/api/v2/${IO_USERNAME}/feeds/${IO_FEED_NAME}`,
     headers: {
@@ -22,14 +20,14 @@ exports.handler = async event => {
         };
     }
 
-    const color = event.body;
+    const color = event.body.trim();
     console.log('updating color:', color);
 
     const ioPayload = {
-        data: [{value:color}]
+        value:color
     };
 
-    const response = await ioClient.post('/data/batch',ioPayload);
+    const response = await ioClient.post('/data',ioPayload);
 
     console.log({axiosResponse:response});
 

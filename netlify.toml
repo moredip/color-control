@@ -1,2 +1,3 @@
 [build]
   functions = "./built-netlify-functions"
+  command = "yarn run build:lambda"

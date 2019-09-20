@@ -8,7 +8,7 @@ export default function createColorFeedGateway(){
 
     async function putColor(color){
         const body = color.toHexString();
-        const response = await client.put( "/put-color", body );
+        const response = await client.put( "/color", body );
         const colorFromServer = tinycolor(response.data.color);
         return colorFromServer;
     }

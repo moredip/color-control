@@ -1,7 +1,13 @@
 exports.handler = async event => {
     console.log({event});
 
-    const color = event.body.color;
+    if( event.httpMethod !== 'PUT' ){
+        return {
+            status: 405
+        };
+    }
+
+    const color = event.body;
     console.log('updating color:', color);
 
     return {

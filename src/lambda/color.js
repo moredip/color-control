@@ -7,7 +7,7 @@ const IO_FEED_NAME = process.env.IO_FEED_NAME;
 const feedBatchUrl = `https://io.adafruit.com/api/v2/${IO_USERNAME}/feeds/${IO_FEED_NAME}/data/batch`;
 
 const ioClient = axios.create({
-    baseUrl: `https://io.adafruit.com/api/v2/${IO_USERNAME}/feeds/${IO_FEED_NAME}`,
+    baseURL: `https://io.adafruit.com/api/v2/${IO_USERNAME}/feeds/${IO_FEED_NAME}`,
     headers: {
         'X-AIO-Key': IO_API_KEY
     }

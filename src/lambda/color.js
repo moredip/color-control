@@ -50,8 +50,6 @@ const putHandler = async event => {
 
   return {
     statusCode: 200,
-    body: JSON.stringify({
-      color
-    })
+    body: response.data.value
   };
 }

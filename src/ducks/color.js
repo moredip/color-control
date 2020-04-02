@@ -1,11 +1,10 @@
 import tinycolor from 'tinycolor2';
-import createColorFeedGateway from '../gateways/colorFeed';
+import {GLOBALTON as colorFeedGateway} from '../gateways/colorFeed';
 
 const CHANGE_RGB_COMPONENT = "@color-control/color/CHANGE_RGB_COMPONENT";
 const CHANGE_COLOR = "@color-control/color/CHANGE_COLOR";
 
 const initialState = tinycolor("#000");
-const colorFeedGateway = createColorFeedGateway();
 
 export default function reducer(state = initialState, action = {}) {
   const color = state;
@@ -16,7 +15,7 @@ export default function reducer(state = initialState, action = {}) {
         ...rgbComponentOverlay(action)
       });
     case CHANGE_COLOR:
-      return action.colorFromServer;
+      return action.newColor;
     default: return state;
   }
 }
@@ -31,18 +30,18 @@ function rgbComponentOverlay({component,value}){
 }
 
 // Action Creators
-export function changeRgbComponent({component,value}) {
-  return async (dispatch,getState) => {
-    dispatch({ type: CHANGE_RGB_COMPONENT, component, value });
-    const {color} = getState();
-    const colorFromServer = await colorFeedGateway.putColor(color);
-    dispatch({ type: CHANGE_COLOR, colorFromServer });
+
+export function updateColor(newColor){
+  return {
+    type: CHANGE_COLOR,
+    newColor
   }
 }
 
-export function refreshColorFromBackend() {
-  return async (dispatch) => {
-    const colorFromServer = await colorFeedGateway.getColor();
-    dispatch({ type: CHANGE_COLOR, colorFromServer });
+export function changeRgbComponent({component,value}) {
+  return (dispatch,getState) => {
+    dispatch({ type: CHANGE_RGB_COMPONENT, component, value });
+    const {color} = getState();
+    colorFeedGateway.putColor(color);
   }
 }
